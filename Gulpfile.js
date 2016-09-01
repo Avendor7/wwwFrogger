@@ -1,32 +1,38 @@
-var gulp = require('gulp'),
-  nodemon = require('gulp-nodemon'),
-  livereload = require('gulp-livereload'),
-  ts = require('gulp-typescript');
+var gulp = require('gulp');
+var tsc = require('gulp-typescript');
+var browserSync = require('browser-sync');
 
-gulp.task('typescript', function() {
-  console.log('Compiling typescript');
-  return gulp.src(['server/**/*.ts'])
-    .pipe(ts({module: 'commonjs'})).js.pipe(gulp.dest('./deploy/server'))
-});
-
-gulp.task('watch', function() {
-  gulp.watch('./server/**/*.ts', ['typescript']);
-});
-
-gulp.task('serve', ['typescript'], function () {
-  livereload.listen();
-  nodemon({
-    script: 'src/index.html',
-    ext: 'html',
-  }).on('restart', function () {
-    setTimeout(function () {
-      livereload.changed();
-    }, 500);
+//browser-sync task
+gulp.task('browser-sync', function() {
+  browserSync.init(null, {
+    server: {
+      baseDir: "./src"
+    }
   });
 });
-gulp.task('deploy', ['build'], function() {
-  return gulp.src(['package.json'])
-    .pipe(gulp.dest('./deploy'));
+
+//watch for typescript changes to be compiled and outputted to dist folder
+gulp.task('typescript', function() {
+  return gulp
+    .src('src/**/*.ts', {read: false})
+    .pipe(tsc({
+      noImplicitAny: true,
+      out: 'app.js'
+    }))
+    .pipe(gulp.dest('dist'))
+    .pipe(browserSync.reload({stream:true}));
 });
 
-gulp.task('default', ['deploy']);
+//watch for HTML changes, then output to dist folder
+gulp.task('html', function() {
+  return gulp
+    .src('./src/*.html')
+    .pipe(gulp.dest('dist'))
+    .pipe(browserSync.reload({stream: true}));
+});
+
+//default task
+gulp.task('default', ['typescript', 'browser-sync','html'], function() {
+  gulp.watch('src/*.ts', ['typescript']);
+  gulp.watch(['src/*.html'], ['html']);
+});
