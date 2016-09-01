@@ -1,0 +1,26 @@
+{
+  "name": "wwwfrogger",
+  "version": "1.0.0",
+  "description": "remake of my Grade 12 HTML5 Canvas game using Phaser.io Game to be written in Typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/step1041/wwwFrogger.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/step1041/wwwFrogger/issues"
+  },
+  "homepage": "https://github.com/step1041/wwwFrogger#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-nodemon": "^2.1.0",
+    "gulp-typescript": "^2.13.6",
+    "typescript": "^1.8.10"
+  }
+}
