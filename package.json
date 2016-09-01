@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/step1041/wwwFrogger#readme",
   "devDependencies": {
+    "browser-sync": "^2.14.3",
     "gulp": "^3.9.1",
     "gulp-livereload": "^3.8.1",
     "gulp-nodemon": "^2.1.0",
