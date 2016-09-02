@@ -14,10 +14,11 @@ module Game {
 
         preload(){
             //graphics
-            this.game.load.image("tile", "/Graphics/TitleScreen.png");
+            this.game.load.image("background", "/Graphics/backg.png");
             //spritesheets
 
             //audio
+
         }
 
         create(){
