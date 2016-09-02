@@ -1,11 +1,32 @@
-class Test{
 
-    constructor(public greeting: string) { }
-    greet() {
-        return console.log(this.greeting);
+module Game {
+    export class wwwFrogger {
+        
+        game:Phaser.Game;
+
+        constructor() {
+            
+            this.game = new Phaser.Game(600, 600, Phaser.AUTO, 'content', {
+
+                create: this.create, preload: this.preload
+            });
+        }
+
+        preload(){
+            //graphics
+            this.game.load.image("tile", "/Graphics/TitleScreen.png");
+            //spritesheets
+
+            //audio
+        }
+
+        create(){
+
+        }
     }
-};
 
-var greeter = new Test("Hello, world!"); 
+}
 
-greeter.greet();
+window.onload = () => {
+    var game = new Game.wwwFrogger();
+}
