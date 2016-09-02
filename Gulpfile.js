@@ -14,7 +14,7 @@ gulp.task('browser-sync', function() {
 //watch for typescript changes to be compiled and outputted to dist folder
 gulp.task('typescript', function() {
   return gulp
-    .src('src/**/*.ts', {read: false})
+    .src('./src/*.ts')
     .pipe(tsc({
       noImplicitAny: true,
       out: 'app.js'
